@@ -6,7 +6,7 @@
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
-  "prefer_related_applications": true,
+  "prefer_related_applications": false,
   "icons": [
     {
       "src": "assets/icons/icon-72x72.png",
@@ -55,12 +55,6 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable any"
-    }
-  ],
-  "related_applications": [
-    {
-      "platform": "play",
-      "id": "com.google.samples.apps.iosched"
     }
   ]
 }
