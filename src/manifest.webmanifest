@@ -1,11 +1,12 @@
 {
   "name": "gavio",
   "short_name": "gavio",
-  "theme_color": "#1976d2",
+  "theme_color": "#fab017",
   "background_color": "#fafafa",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
+  "prefer_related_applications": true,
   "icons": [
     {
       "src": "assets/icons/icon-72x72.png",
@@ -54,6 +55,12 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable any"
+    }
+  ],
+  "related_applications": [
+    {
+      "platform": "play",
+      "id": "com.google.samples.apps.iosched"
     }
   ]
 }
