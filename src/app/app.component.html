@@ -3,10 +3,17 @@
 </head>
 
 <mat-toolbar color="primary">
-    <span><span id="headerLogo">G</span>avio</span>
-    <button mat-stroked-button (click)="addToHomeScreen()" *ngIf="showButton" mat-button class="install-button">
-        Instalar
-    </button>
+    <a href="" (click)="goMain()"><span id="headerLogo">G</span>avio</a>
+    <div id="containerBut">
+        <!-- install button -->
+        <button mat-stroked-button (click)="addToHomeScreen()" *ngIf="showButton" mat-button class="install-button">
+            Instalar
+        </button>
+        <!-- Register button -->
+        <button mat-stroked-button mat-button (click)="goRegister()">
+            Registrate
+        </button>
+    </div>
 </mat-toolbar>
 <router-outlet></router-outlet>
 

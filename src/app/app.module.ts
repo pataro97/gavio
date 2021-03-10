@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
+import { environment } from '../environments/environment.prod';
 import { HomeComponent } from './home/home.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { MatSliderModule } from '@angular/material/slider';
@@ -14,13 +14,19 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatCardModule} from '@angular/material/card';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-
+import {MatInputModule} from '@angular/material/input';
+// Firebase
+import { AngularFireModule } from '@angular/fire';
+import { RegisterComponent } from './register/register.component';
+import { MatTabsModule } from '@angular/material/tabs';
+// Forms
+import{ FormsModule, ReactiveFormsModule } from '@angular/forms'; 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    ErrorPageComponent
+    ErrorPageComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +39,13 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatButtonModule,
     MatToolbarModule,
     MatCardModule,
-    MatProgressSpinnerModule
+    MatTabsModule,
+    MatInputModule,
+    // firebase
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    // forms
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
