@@ -24,6 +24,7 @@
     "@angular/router": "~9.0.5",
     "@angular/service-worker": "~9.0.5",
     "@material/fab": "^10.0.0",
+    "auth-angular": "^0.4.5",
     "firebase": "^8.2.10",
     "rxjs": "~6.5.4",
     "snyk": "^1.476.0",
