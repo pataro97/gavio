@@ -1,0 +1,17 @@
+<mat-card id="emailCard" *ngIf="user$ | async as user; else loading">
+    <mat-card-header>
+      <mat-card-title>Verificación Email</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        Gracias por registrarte en Gavio, se ha enviado un correo de verificación a <strong>{{user?.email}}</strong>, 
+        pincha en el enlace de confirmación que se ha enviado a tu correo.
+      </p>
+        <div class="center">
+            <button mat-raised-button (click)="sedEmail()">Reenviar correo de verificación</button>
+        </div>
+    </mat-card-content>
+</mat-card>
+<ng-template #loading>
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</ng-template>

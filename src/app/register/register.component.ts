@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
+import { Router } from "@angular/router";
 // services
 import { Usuarios } from '../services/types/usuarios';
 import { ComparadorService } from '../services/error/comparador.service';
+import { AuthService } from '../services/firebase/auth/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -11,14 +13,12 @@ import { ComparadorService } from '../services/error/comparador.service';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService: AuthService, private router: Router) { }
 // ---------------------------------------------- datos Usuarios
   // Objetos campos
   public value: any = {} as Usuarios;
 
   // Validaciones fornularios
-  public passw: string;
-  public passwR: string;
 
   public usersForm = new FormGroup({
     emailFormControl: new FormControl('', [
@@ -46,9 +46,10 @@ export class RegisterComponent implements OnInit {
   }
 
   registerUsers(val) {
-    // comprobar campos
+    // comprobar campos usuario
     if(this.usersForm.status == "VALID") {
-
+      this.authService.doRegister(val);
+      this.router.navigate(['userVerifyEmail']);
     }
   }
 

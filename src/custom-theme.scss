@@ -3,6 +3,17 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+// custom class
+.center{
+  display: flex;
+  justify-content: center;
+}
+.secundaryCB {
+  background-color: #fab017;
+}
+.secundaryCT {
+  color: #fab017;
+}
 
 @import '~@angular/material/theming';
 // Include the common styles for Angular Material. We include this here so that you only
@@ -237,6 +248,7 @@ $altTheme: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
   padding: .5em .85em;
   min-height: 2.5em;
 }
+
 
 .material-icons {
   font-size: 24px;

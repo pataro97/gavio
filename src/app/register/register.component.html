@@ -47,7 +47,7 @@
                 <!-- Password -->
                 <mat-form-field class="inputUsers-full-width">
                   <mat-label>Contraseña</mat-label>
-                  <input [(ngModel)]="passw" name="passw" type="password" matInput formControlName="passwFormControl" maxlength="40" required>
+                  <input [(ngModel)]="value.passw" name="passw" type="password" matInput formControlName="passwFormControl" maxlength="40" required>
                   <mat-error *ngIf="usersForm.controls['passwFormControl'].hasError('required')">
                     *Contraseña <strong>obligatorio</strong>
                   </mat-error>
@@ -59,7 +59,7 @@
                 <!-- Repeat password -->
                 <mat-form-field class="inputUsers-full-width">
                   <mat-label>Confirma contraseña</mat-label>
-                  <input [(ngModel)]="passwR" name="passwR" type="password" matInput formControlName="passwRFormControl" maxlength="40" [errorStateMatcher]="matcher">
+                  <input [(ngModel)]="value.passwR" name="passwR" type="password" matInput formControlName="passwRFormControl" maxlength="40" [errorStateMatcher]="matcher">
                   <mat-error *ngIf="usersForm.hasError('notSame')" >
                     Contraseña no <strong>coincide</strong>
                   </mat-error>

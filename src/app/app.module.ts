@@ -15,18 +15,24 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 // Firebase
 import { AngularFireModule } from '@angular/fire';
 import { RegisterComponent } from './register/register.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 // Forms
-import{ FormsModule, ReactiveFormsModule } from '@angular/forms'; 
+import{ FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SendEmailUsersComponent } from './send-email-users/send-email-users.component'; 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ErrorPageComponent,
-    RegisterComponent
+    RegisterComponent,
+    SendEmailUsersComponent
   ],
   imports: [
     BrowserModule,
@@ -41,8 +47,12 @@ import{ FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatCardModule,
     MatTabsModule,
     MatInputModule,
+    MatProgressBarModule,
     // firebase
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
+    AngularFireStorageModule,
+    AngularFirestoreModule,
     // forms
     FormsModule,
     ReactiveFormsModule

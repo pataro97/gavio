@@ -4,5 +4,6 @@ export interface Usuarios {
     email: string;
     uid: string;
     fecha: Date;
-    password: string;
+    passw: string;
+    passwR: string;
 }

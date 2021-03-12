@@ -1,17 +1,27 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+// service
+import { AuthService } from './services/firebase/auth/auth.service'
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
-  constructor(
-    private router: Router
-  ) {}
-
+  
+  // variables
   title = 'gavio';
+  //  auth var
+  public userData: Observable<any>;
+  
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+  ) { this.userData = this.authService.afAuth.user}
 
+  // ---------------------------------------- routers
 
   goRegister() {
     this.router.navigate(["register"]);
@@ -51,5 +61,11 @@ export class AppComponent {
         this.deferredPrompt = null;
       });
   }
-// ---------------------------------------------------------------------------------------------------//
+
+// -------------------------------------------------------------- auth
+// logOut
+  logOut(): void {
+      this.authService.doLogout();
+  }
+  // ------------------------------------------------------------------
 }
