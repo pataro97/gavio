@@ -1,0 +1,29 @@
+<mat-card class="registerCard">
+    <mat-card-header>
+      <mat-card-title>Registrate como:</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <!-- Formulario Usuario -->
+        <form class="form" (ngSubmit)="tryLogin(value)">
+
+        <!-- Gmail -->
+        <mat-form-field class="inputUsers-full-width">
+            <mat-label>Email</mat-label>
+            <input [(ngModel)]="value.email" name="email" type="email" matInput placeholder="Ej. pat@example.com" maxlength="35" required>
+        </mat-form-field>
+        <br>
+
+        <!-- Password -->
+        <mat-form-field class="inputUsers-full-width">
+            <mat-label>Contraseña</mat-label>
+            <input [(ngModel)]="value.passw" name="passw" type="password" matInput maxlength="40" required>
+        </mat-form-field>
+        <br>
+        <!-- submit button -->
+        <br><br>
+        <button mat-stroked-button mat-button class="submit-btn" type="submit">Iniciar</button>
+        
+        </form>
+        <!-- ------------------------------ -->
+    </mat-card-content>
+  </mat-card>

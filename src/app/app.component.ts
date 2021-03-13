@@ -1,5 +1,5 @@
-import { Component, HostListener, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, HostListener } from '@angular/core';
+import { Router, NavigationExtras, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 // service
 import { AuthService } from './services/firebase/auth/auth.service'
@@ -29,6 +29,10 @@ export class AppComponent {
 
   goMain() {
     this.router.navigate([""]);
+  }
+
+  goLogin() {
+    this.router.navigate(["login"]);
   }
 // ---------------------------------------------------- Necesario certificado https para prompt android
 

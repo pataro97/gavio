@@ -25,14 +25,16 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 // Forms
 import{ FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SendEmailUsersComponent } from './send-email-users/send-email-users.component'; 
+import { SendEmailUsersComponent } from './send-email-users/send-email-users.component';
+import { LoginComponent } from './login/login.component'; 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ErrorPageComponent,
     RegisterComponent,
-    SendEmailUsersComponent
+    SendEmailUsersComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

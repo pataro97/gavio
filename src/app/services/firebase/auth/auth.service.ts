@@ -28,7 +28,7 @@ export class AuthService {
   //  login
   doLogin(value){
     return new Promise<any>((resolve, reject) => {
-      firebase.auth().signInWithEmailAndPassword(value.email, value.password)
+      firebase.auth().signInWithEmailAndPassword(value.email, value.passw)
       .then( res => { resolve(res),
        err => reject(err),
        this.router.navigate([""])

@@ -26,6 +26,7 @@
     "@material/fab": "^10.0.0",
     "auth-angular": "^0.4.5",
     "firebase": "^8.2.10",
+    "router-guard": "^2.0.0",
     "rxjs": "~6.5.4",
     "snyk": "^1.476.0",
     "tslib": "^1.10.0",
