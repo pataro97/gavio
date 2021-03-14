@@ -14,6 +14,9 @@ export class AuthService {
 
   // registro
   doRegister(value){
+    // Fecha, tiempo, hora
+    value.date = new Date();
+    // -------------------------------
     return new Promise<any>((resolve, reject) => {
       firebase.auth().createUserWithEmailAndPassword(value.email, value.passw)
       .then( res => { resolve(res),

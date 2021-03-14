@@ -10,9 +10,10 @@ export class FirestoreService {
 
   insertColUser(value, res) {
     this.db.collection('usuarios').doc(res.user.uid).set({
-      uid: res.user.uid,
-      name: value.name
-      
+      // uid: res.user.uid,
+      name: value.name,
+      lastName: value.lastName,
+      date: value.date
    })
   }
 }

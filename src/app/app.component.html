@@ -2,31 +2,35 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 
-
-<mat-toolbar color="primary">
-    <a href="" (click)="goMain()"><span id="headerLogo">G</span>avio</a>
-    <div id="containerBut">
-        <!-- install button -->
-        <button mat-stroked-button (click)="addToHomeScreen()" *ngIf="showButton" mat-button class="install-button">
-            Instalar
-        </button>
-        
-        <div *ngIf="userData | async; else out">
-            <!-- LogOut button -->
-            <button mat-stroked-button mat-button (click)="logOut()">
-                Cerrar Sesión
+<div id="loadBarM">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
+<div id="containerPage" style="visibility: hidden;">
+    <mat-toolbar color="primary">
+        <a href="" (click)="goMain()"><span id="headerLogo">G</span>avio</a>
+        <div id="containerBut">
+            <!-- install button -->
+            <button mat-stroked-button (click)="addToHomeScreen()" *ngIf="showButton" mat-button class="install-button">
+                Instalar
             </button>
+            
+            <div *ngIf="userData | async; else out">
+                <!-- LogOut button -->
+                <button mat-stroked-button mat-button (click)="logOut()">
+                    Cerrar Sesión
+                </button>
+            </div>
+            <ng-template #out>
+                <!-- log in -->
+                <button mat-stroked-button mat-button (click)="goLogin()">
+                    Iniciar Sesión
+                </button>
+                <!-- Register button -->
+                <button mat-flat-button mat-button id="regB" (click)="goRegister()">
+                    Registrate
+                </button>
+            </ng-template>
         </div>
-        <ng-template #out>
-            <!-- log in -->
-            <button mat-stroked-button mat-button (click)="goLogin()">
-                Iniciar Sesión
-            </button>
-            <!-- Register button -->
-            <button mat-flat-button mat-button id="regB" (click)="goRegister()">
-                Registrate
-            </button>
-        </ng-template>
-    </div>
-</mat-toolbar>
-<router-outlet></router-outlet>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+</div>

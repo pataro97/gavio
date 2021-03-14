@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router, NavigationExtras, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 // service
@@ -9,7 +9,7 @@ import { AuthService } from './services/firebase/auth/auth.service'
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.sass']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   
   // variables
   title = 'gavio';
@@ -20,6 +20,21 @@ export class AppComponent {
     private router: Router,
     private authService: AuthService,
   ) { this.userData = this.authService.afAuth.user}
+
+  // Oninit
+  ngOnInit():void {
+    // tiempo de espera tanto para carga de pagina como para posición de botones
+    const pageContiner = document.getElementById('containerPage');
+    const loaderContiner = document.getElementById('loadBarM');
+
+      window.onload= function() { 
+        setTimeout(()=>{
+          loaderContiner.style.visibility = 'hidden';
+          loaderContiner.style.display = 'none';
+          pageContiner.style.visibility = 'visible';
+        }, 1000);
+       };
+  }
 
   // ---------------------------------------- routers
 
