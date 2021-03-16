@@ -29,15 +29,19 @@ export class AuthService {
    }
 
   //  login
-  doLogin(value){
+  async doLogin(value){
     return new Promise<any>((resolve, reject) => {
       firebase.auth().signInWithEmailAndPassword(value.email, value.passw)
-      .then( res => { resolve(res),
-       err => reject(err),
-       this.router.navigate([""])
- 
-      })
-   })}
+      .then(
+        res => { resolve(res),
+        err => reject(err),
+        
+        // no hay errores
+        this.router.navigate([""])
+        }
+      )
+   })
+  }
    
   //  envio de correo 
    async sendEmail():Promise<void> {

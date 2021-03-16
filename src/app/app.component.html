@@ -22,9 +22,12 @@
             </div>
             <ng-template #out>
                 <!-- log in -->
-                <button mat-stroked-button mat-button (click)="goLogin()">
+                <button mat-button [matMenuTriggerFor]="menu">
                     Iniciar Sesión
                 </button>
+                <mat-menu #menu="matMenu">
+                    <div (click)="$event.stopPropagation();"><app-login></app-login></div>
+                </mat-menu>
                 <!-- Register button -->
                 <button mat-flat-button mat-button id="regB" (click)="goRegister()">
                     Registrate

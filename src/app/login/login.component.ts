@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Usuarios } from '../services/types/usuarios';
 import { ComparadorService } from '../services/error/comparador.service';
 import { AuthService } from '../services/firebase/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,20 +17,19 @@ export class LoginComponent implements OnInit {
     passw: ""
   };
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
   tryLogin(value){
-    this.authService.doLogin(value)
-    .then(res => {
-      // this.router.navigate(["/home"]);
-      console.log("Ha iniciado sesión correctamente")
-    }, err => {
-      // this.errorMessage = err.message;
-      console.log(err)
-    })
+    this.authService.doLogin(value);
+    // .then(res => {
+    //   // this.router.navigate(["/home"]);
+    // }, err => {
+    //   // this.errorMessage = err.message;
+    //   console.log(err)
+    // })
   }
 
 

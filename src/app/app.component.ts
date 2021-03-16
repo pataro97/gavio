@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { Router, NavigationExtras, UrlTree } from '@angular/router';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 // service
 import { AuthService } from './services/firebase/auth/auth.service'
@@ -10,7 +10,7 @@ import { AuthService } from './services/firebase/auth/auth.service'
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent implements OnInit{
-  
+
   // variables
   title = 'gavio';
   //  auth var
