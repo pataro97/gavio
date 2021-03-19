@@ -39,7 +39,23 @@ export class AuthService {
         // no hay errores
         this.router.navigate([""])
         }
-      )
+      ).catch((error) =>{
+        switch (error.code) {
+          case "auth/invalid-email":
+          case "auth/wrong-password":
+          case "auth/user-not-found":
+            {
+              alert("Wrong email address or password.");
+              break;
+            }
+          case "auth/user-disabled":
+          case "user-disabled":
+            {
+              alert("This account is disabled");
+              break;
+            }
+        }
+      })
    })
   }
    

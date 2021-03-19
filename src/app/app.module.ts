@@ -16,6 +16,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatDividerModule} from '@angular/material/divider';
 // Firebase
 import { AngularFireModule } from '@angular/fire';
 import { RegisterComponent } from './register/register.component';
@@ -50,6 +51,7 @@ import { LoginComponent } from './login/login.component';
     MatTabsModule,
     MatInputModule,
     MatProgressBarModule,
+    MatDividerModule,
     // firebase
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,

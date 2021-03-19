@@ -4,6 +4,7 @@ import { Usuarios } from '../services/types/usuarios';
 import { ComparadorService } from '../services/error/comparador.service';
 import { AuthService } from '../services/firebase/auth/auth.service';
 import { Router } from '@angular/router';
+import { Validators, FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -12,10 +13,18 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  value: any = {
-    email: "",
-    passw: ""
-  };
+  public value: any = {} as Usuarios;
+
+  // validación formulario
+  public loginForm = new FormGroup({
+    emailFormControl: new FormControl('', [
+      Validators.required,
+      Validators.email,
+    ]),
+    passwFormControl: new FormControl('', [
+      Validators.required,
+    ])
+  });
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -23,13 +32,9 @@ export class LoginComponent implements OnInit {
   }
 
   tryLogin(value){
-    this.authService.doLogin(value);
-    // .then(res => {
-    //   // this.router.navigate(["/home"]);
-    // }, err => {
-    //   // this.errorMessage = err.message;
-    //   console.log(err)
-    // })
+    if(this.loginForm.status == "VALID") {
+      this.authService.doLogin(value);
+    }
   }
 
 

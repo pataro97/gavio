@@ -1,29 +1,45 @@
-<mat-card class="registerCard">
+<mat-card class="registerCard col-lg-8 col-md-8">
     <mat-card-header>
-      <mat-card-title>Registrate como:</mat-card-title>
+      <mat-card-title>Iniciar sesión:</mat-card-title>
     </mat-card-header>
-    <mat-card-content>
+    <mat-card-content class="formContainer">
+        <img draggable="false" (dragstart)="false;" src="../../assets/icons/icon-152x152.png">
+        <h1 id="LoginLogo">Gavio</h1>
         <!-- Formulario Usuario -->
-        <form class="form" (ngSubmit)="tryLogin(value)">
+        <form class="loginForm" [formGroup]="loginForm" (ngSubmit)="tryLogin(value)">
+            <!-- Gmail -->
+            <mat-form-field class="inputUsers-full-width">
+                <mat-label>Email</mat-label>
+                <input [(ngModel)]="value.email" name="email" type="email" matInput formControlName="emailFormControl" placeholder="Ej. pat@example.com" maxlength="35" required>
+                <mat-error *ngIf="loginForm.controls['emailFormControl'].hasError('email') && !loginForm.controls['emailFormControl'].hasError('required')">
+                  Introduzca un correo válido
+                </mat-error>
+                <mat-error *ngIf="loginForm.controls['emailFormControl'].hasError('required')">
+                  *Email <strong>obligatorio</strong>
+                </mat-error>
+              </mat-form-field>
+            <br>
 
-        <!-- Gmail -->
-        <mat-form-field class="inputUsers-full-width">
-            <mat-label>Email</mat-label>
-            <input [(ngModel)]="value.email" name="email" type="email" matInput placeholder="Ej. pat@example.com" maxlength="35" required>
-        </mat-form-field>
-        <br>
-
-        <!-- Password -->
-        <mat-form-field class="inputUsers-full-width">
-            <mat-label>Contraseña</mat-label>
-            <input [(ngModel)]="value.passw" name="passw" type="password" matInput maxlength="40" required>
-        </mat-form-field>
-        <br>
-        <!-- submit button -->
-        <br><br>
-        <button mat-stroked-button mat-button class="submit-btn" type="submit">Iniciar</button>
-        
+            <!-- Password -->
+            <mat-form-field class="inputUsers-full-width">
+                <mat-label>Contraseña</mat-label>
+                <input [(ngModel)]="value.passw" name="passw" type="password" matInput formControlName="passwFormControl" maxlength="40" required>
+                <mat-error *ngIf="loginForm.controls['passwFormControl'].hasError('required')">
+                  *Contraseña <strong>obligatorio</strong>
+                </mat-error>
+              </mat-form-field>
+            <br>
+            <!-- submit button -->
+            <br>
+            <button mat-stroked-button mat-button class="submit-btn" type="submit">Iniciar Sesión</button>
         </form>
         <!-- ------------------------------ -->
+        <br>
+        <div class="container">
+            <div class="line"><mat-divider></mat-divider></div>
+            <div class="textDiv">¿Eres nuevo en Gavio?</div>
+            <div class="line"><mat-divider></mat-divider></div>
+        </div>
+
     </mat-card-content>
   </mat-card>
