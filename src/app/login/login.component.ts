@@ -31,9 +31,28 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  tryLogin(value){
+  async tryLogin(value){
     if(this.loginForm.status == "VALID") {
-      this.authService.doLogin(value);
+      await this.authService.doLogin(value).then(promise => {
+        // comprobar si hay error
+        switch (promise.code) {
+          case "auth/wrong-password":
+          case "auth/user-not-found":
+            {
+              console.log( "Wrong email address or password.");
+              break;
+            }
+          case "auth/user-disabled":
+          case "user-disabled":
+            {
+              console.log( "This account is disabled");
+              break;
+            }
+          case "auth/too-many-requests":
+            console.log("Access to this account has been temporarily disabled due to many failed login attempts");
+            break;
+          }
+      });
     }
   }
 

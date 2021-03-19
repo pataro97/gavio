@@ -72,11 +72,11 @@ export class AppComponent implements OnInit{
     // Wait for the user to respond to the prompt
     this.deferredPrompt.userChoice
       .then((choiceResult) => {
-        if (choiceResult.outcome === 'accepted') {
-          console.log('User accepted the A2HS prompt');
-        } else {
-          console.log('User dismissed the A2HS prompt');
-        }
+        // if (choiceResult.outcome === 'accepted') {
+        //   console.log('User accepted the A2HS prompt');
+        // } else {
+        //   console.log('User dismissed the A2HS prompt');
+        // }
         this.deferredPrompt = null;
       });
   }

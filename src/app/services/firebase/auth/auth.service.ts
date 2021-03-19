@@ -3,7 +3,8 @@ import { Router } from "@angular/router";
 import firebase from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 // Firesore
-import { FirestoreService } from '../firestore/firestore.service'
+import { FirestoreService } from '../firestore/firestore.service';
+
 
 @Injectable({
   providedIn: 'root'
@@ -30,31 +31,15 @@ export class AuthService {
 
   //  login
   async doLogin(value){
-    return new Promise<any>((resolve, reject) => {
+    return new Promise<any>(resPromise => {
       firebase.auth().signInWithEmailAndPassword(value.email, value.passw)
-      .then(
-        res => { resolve(res),
-        err => reject(err),
-        
+      .then(res => { 
         // no hay errores
         this.router.navigate([""])
+        resPromise(res);
         }
       ).catch((error) =>{
-        switch (error.code) {
-          case "auth/invalid-email":
-          case "auth/wrong-password":
-          case "auth/user-not-found":
-            {
-              alert("Wrong email address or password.");
-              break;
-            }
-          case "auth/user-disabled":
-          case "user-disabled":
-            {
-              alert("This account is disabled");
-              break;
-            }
-        }
+        resPromise(error);
       })
    })
   }
