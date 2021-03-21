@@ -27,9 +27,16 @@
                 <mat-error *ngIf="loginForm.controls['passwFormControl'].hasError('required')">
                   *Contraseña <strong>obligatorio</strong>
                 </mat-error>
+                <mat-error *ngIf="loginForm.controls['passwFormControl'].hasError('pattern')">
+                  Contraseña <strong>incorrecta</strong>
+                </mat-error>
               </mat-form-field>
             <br>
             <!-- submit button -->
+            <br>
+            <div id="invalidCredentialsNotif" *ngIf='contError$'>
+              {{contError$}}
+            </div>
             <br>
             <button mat-stroked-button mat-button class="submit-btn" type="submit">Iniciar Sesión</button>
         </form>
@@ -40,6 +47,7 @@
             <div class="textDiv">¿Eres nuevo en Gavio?</div>
             <div class="line"><mat-divider></mat-divider></div>
         </div>
-
+        <br>
+        <button mat-stroked-button mat-button (click)="goRegister()">Crear Cuenta</button>
     </mat-card-content>
   </mat-card>

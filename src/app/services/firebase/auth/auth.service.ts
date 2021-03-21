@@ -31,15 +31,33 @@ export class AuthService {
 
   //  login
   async doLogin(value){
-    return new Promise<any>(resPromise => {
+    return new Promise<any>((resPromise, rejects) => {
       firebase.auth().signInWithEmailAndPassword(value.email, value.passw)
       .then(res => { 
-        // no hay errores
-        this.router.navigate([""])
         resPromise(res);
         }
       ).catch((error) =>{
-        resPromise(error);
+        // comprobar si hay error
+        switch (error.code) {
+          case "auth/wrong-password":
+          case "auth/user-not-found":
+            {
+              error = 'Email o contraseña incorrecta';
+              rejects(error)
+              break;
+            }
+          case "auth/user-disabled":
+          case "user-disabled":
+            {
+              error = 'Cuenta desabilitada';
+              rejects(error)
+              break;
+            }
+          case "auth/too-many-requests":
+            error = 'La cuenta esta temporalmente deshabilitada debido a múltiples intentos de inicio de sesión';
+            rejects(error)
+            break;
+          }
       })
    })
   }

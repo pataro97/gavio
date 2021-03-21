@@ -10,11 +10,7 @@ export class ComparadorService implements ErrorStateMatcher {
   constructor() { }
 
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    // Compara las 2 contraseñas en el registro si se han escrito igual
     return control.parent.errors && control.parent.errors['notSame'];
-    // const invalidCtrl = !!(control?.invalid && control?.parent?.dirty);
-    // const invalidParent = !!(control?.parent?.invalid && control?.parent?.dirty);
-
-    // return invalidCtrl || invalidParent;
-    
   }
 }
