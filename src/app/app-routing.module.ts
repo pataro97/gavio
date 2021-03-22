@@ -6,13 +6,14 @@ import { RegisterComponent } from './register/register.component';
 import { SendEmailUsersComponent } from './send-email-users/send-email-users.component';
 import { LoginComponent } from './login/login.component';
 import { LogOutGuard } from './guards/routerGuard/logOut/router-guard.guard';
+import { ConfirmEmailGuard } from './guards/routerGuard/confirmEmail/confirm-email.guard';
 
 const routes: Routes = [
   {path: '', component: HomeComponent },
-  {path: 'register', component: RegisterComponent },
-  {path: 'login', component: LoginComponent },
+  {path: 'register', component: RegisterComponent, canActivate: [LogOutGuard] },
+  {path: 'login', component: LoginComponent, canActivate: [LogOutGuard]},
   // acceso restringido modo logOut
-  {path: 'userVerifyEmail', component: SendEmailUsersComponent, canActivate: [LogOutGuard]},
+  {path: 'userVerifyEmail', component: SendEmailUsersComponent, canActivate: [ConfirmEmailGuard]},
   // pagina error
   {path: '**', component: ErrorPageComponent },
 ];

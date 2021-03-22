@@ -9,25 +9,13 @@ export class LogOutGuard implements CanActivate {
   constructor( public authService : AuthService,
     private router : Router){}
 
-    result: boolean;
-canActivate () : boolean{
-  this.authService.afAuth.user.subscribe(user => {
-    if(user){
-      if(!user.emailVerified){
-        this.router.navigate(['userVerifyEmail'])
-        this.result = true;
-      } else {
-        this.router.navigate([''])
-        this.result = false;
-      }
-
-    } else {
-      this.router.navigate([''])
-        this.result = false;
-    }
-      
-  })
-  return this.result;
-}  
+    canActivate () : boolean{
+      this.authService.afAuth.user.subscribe(user => {
+        if(user){
+          this.router.navigate(['']);
+        }
+      })
+      return true;
+    }  
   
 }
