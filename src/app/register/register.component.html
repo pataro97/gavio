@@ -65,8 +65,13 @@
                   </mat-error>
                 </mat-form-field>
                 <br>
+                <!-- Check Box -->
+                <mat-checkbox required name="checkBoxControl" matInput formControlName="checkBoxControl">He leido y acepto las políticas de privacidad</mat-checkbox>
+                <mat-error *ngIf="boolTerm">
+                  Debe de <strong>aceptar</strong> las politicas de privacidad.
+                </mat-error>
+                <br>
                 <!-- submit button -->
-                <br><br>
                 <button mat-stroked-button mat-button class="submit-btn" type="submit">Registrate</button>
                 
               </form>

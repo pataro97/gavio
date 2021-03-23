@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit {
 // ---------------------------------------------- datos Usuarios
   // Objetos campos
   public value: any = {} as Usuarios;
-
+  public boolTerm: boolean = false;
   // Validaciones fornularios
 
   public usersForm = new FormGroup({
@@ -35,6 +35,9 @@ export class RegisterComponent implements OnInit {
       Validators.required,
       Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&-.#%])[A-Za-z\d$@$!%*?&].{8,}')
     ]),
+    checkBoxControl: new FormControl('', [
+      Validators.required,
+    ]),
     passwRFormControl: new FormControl(''),
   }, { validators: this.checkPasswords });
 
@@ -50,7 +53,13 @@ export class RegisterComponent implements OnInit {
     if(this.usersForm.status == "VALID") {
       this.authService.doRegister(val);
       this.router.navigate(['userVerifyEmail']);
+    } else if(this.usersForm.controls['checkBoxControl'].hasError('required')) {
+      // comprobar si se han aceptado los terminos
+      this.boolTerm = true;
+    } else {
+      this.boolTerm = false;
     }
+
   }
 
   checkPasswords(group: FormGroup) {
