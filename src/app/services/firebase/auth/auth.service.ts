@@ -20,18 +20,31 @@ export class AuthService {
     // -------------------------------
     return new Promise<any>((resolve, reject) => {
       firebase.auth().createUserWithEmailAndPassword(value.email, value.passw)
-      .then( res => { resolve(res),
-        err => reject(err),
-       //  Almacenar datos DBfirebase usuarios
+      .then( res => { 
+        //  Almacenar datos DBfirebase usuarios
         this.firestoreService.insertColUser(value, res);
+        resolve(res),
         this.sendEmail();
+       }).catch((error) => {
+         // comprobar si hay error
+        switch (error.code) {
+          case "auth/invalid-email": {
+            error = 'El Email proporcionado no es valido';
+            reject(error)
+            break;
+          }
+          case "auth/email-already-in-use":
+            error = 'El Email ya se encuentra en uso';
+            reject(error)
+            break;
+          }
        })
     })
    }
 
   //  login
   async doLogin(value){
-    return new Promise<any>((resPromise, rejects) => {
+    return new Promise<any>((resPromise, reject) => {
       firebase.auth().signInWithEmailAndPassword(value.email, value.passw)
       .then(res => { 
         resPromise(res);
@@ -43,19 +56,19 @@ export class AuthService {
           case "auth/user-not-found":
             {
               error = 'Email o contraseña incorrecta';
-              rejects(error)
+              reject(error)
               break;
             }
           case "auth/user-disabled":
           case "user-disabled":
             {
               error = 'Cuenta desabilitada';
-              rejects(error)
+              reject(error)
               break;
             }
           case "auth/too-many-requests":
             error = 'La cuenta esta temporalmente deshabilitada debido a múltiples intentos de inicio de sesión';
-            rejects(error)
+            reject(error)
             break;
           }
       })

@@ -7,75 +7,7 @@
         <mat-tab-group mat-align-tabs="center">
             <mat-tab label="Usuario">
 
-              <!-- Formulario Usuario -->
-              <form class="form" [formGroup]="usersForm" (ngSubmit)="registerUsers(value)">
-
-                <!-- Nombre -->
-                <mat-form-field class="inputUsers-full-width">
-                  <mat-label>Nombre</mat-label>
-                  <input [(ngModel)]="value.name" name="name" type="name" matInput formControlName="nameFormControl" maxlength="20" required>
-                  <mat-error *ngIf="usersForm.controls['nameFormControl'].hasError('required')">
-                    *Nombre <strong>obligatorio</strong>
-                  </mat-error>
-                </mat-form-field>
-                <br>
-
-                <!-- apellido -->
-
-                <mat-form-field class="inputUsers-full-width">
-                  <mat-label>Apellidos</mat-label>
-                  <input [(ngModel)]="value.lastName" name="lastName" type="lastName" matInput formControlName="lastNameFormControl" maxlength="20" required>
-                  <mat-error *ngIf="usersForm.controls['lastNameFormControl'].hasError('required')">
-                    *Apellidos <strong>obligatorios</strong>
-                  </mat-error>
-                </mat-form-field>
-                <br>
-
-                <!-- Gmail -->
-                <mat-form-field class="inputUsers-full-width">
-                  <mat-label>Email</mat-label>
-                  <input [(ngModel)]="value.email" name="email" type="email" matInput formControlName="emailFormControl" placeholder="Ej. pat@example.com" maxlength="35" required>
-                  <mat-error *ngIf="usersForm.controls['emailFormControl'].hasError('email') && !usersForm.controls['emailFormControl'].hasError('required')">
-                    Introduzca un correo válido
-                  </mat-error>
-                  <mat-error *ngIf="usersForm.controls['emailFormControl'].hasError('required')">
-                    *Email <strong>obligatorio</strong>
-                  </mat-error>
-                </mat-form-field>
-                <br>
-
-                <!-- Password -->
-                <mat-form-field class="inputUsers-full-width">
-                  <mat-label>Contraseña</mat-label>
-                  <input [(ngModel)]="value.passw" name="passw" type="password" matInput formControlName="passwFormControl" maxlength="40" required>
-                  <mat-error *ngIf="usersForm.controls['passwFormControl'].hasError('required')">
-                    *Contraseña <strong>obligatorio</strong>
-                  </mat-error>
-                  <mat-error *ngIf="usersForm.controls['passwFormControl'].hasError('pattern')">
-                    *Contraseña <strong>débil</strong> debe de contener mayúscula, minúscula, numero y al menos un carácter(.%@#$!*-)
-                  </mat-error>
-                </mat-form-field>
-                <br>
-                <!-- Repeat password -->
-                <mat-form-field class="inputUsers-full-width">
-                  <mat-label>Confirma contraseña</mat-label>
-                  <input [(ngModel)]="value.passwR" name="passwR" type="password" matInput formControlName="passwRFormControl" maxlength="40" [errorStateMatcher]="matcher">
-                  <mat-error *ngIf="usersForm.hasError('notSame')" >
-                    Contraseña no <strong>coincide</strong>
-                  </mat-error>
-                </mat-form-field>
-                <br>
-                <!-- Check Box -->
-                <mat-checkbox required name="checkBoxControl" matInput formControlName="checkBoxControl">He leido y acepto las políticas de privacidad</mat-checkbox>
-                <mat-error *ngIf="boolTerm">
-                  Debe de <strong>aceptar</strong> las politicas de privacidad.
-                </mat-error>
-                <br>
-                <!-- submit button -->
-                <button mat-stroked-button mat-button class="submit-btn" type="submit">Registrate</button>
-                
-              </form>
-              <!-- ------------------------------ -->
+              <app-users-reg></app-users-reg>
 
             </mat-tab>
             <mat-tab label="Hostelero"> Content 2 </mat-tab>

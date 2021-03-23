@@ -12,12 +12,12 @@ import { MatSliderModule } from '@angular/material/slider';
 // materials modules
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatCardModule} from '@angular/material/card';
-import {MatInputModule} from '@angular/material/input';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
-import {MatDividerModule} from '@angular/material/divider';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 // Firebase
 import { AngularFireModule } from '@angular/fire';
 import { RegisterComponent } from './register/register.component';
@@ -28,7 +28,8 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 // Forms
 import{ FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SendEmailUsersComponent } from './send-email-users/send-email-users.component';
-import { LoginComponent } from './login/login.component'; 
+import { LoginComponent } from './login/login.component';
+import { UsersRegComponent } from './users-reg/users-reg.component'; 
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +37,8 @@ import { LoginComponent } from './login/login.component';
     ErrorPageComponent,
     RegisterComponent,
     SendEmailUsersComponent,
-    LoginComponent
+    LoginComponent,
+    UsersRegComponent
   ],
   imports: [
     BrowserModule,
