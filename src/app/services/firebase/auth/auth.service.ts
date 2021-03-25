@@ -14,7 +14,7 @@ export class AuthService {
   constructor(public afAuth: AngularFireAuth, private firestoreService: FirestoreService, private router: Router) { }
 
   // registro
-  doRegister(value){
+  doRegister(value, tipo){
     // Fecha, tiempo, hora
     value.date = new Date();
     // -------------------------------
@@ -22,7 +22,7 @@ export class AuthService {
       firebase.auth().createUserWithEmailAndPassword(value.email, value.passw)
       .then( res => { 
         //  Almacenar datos DBfirebase usuarios
-        this.firestoreService.insertColUser(value, res);
+        this.firestoreService.insertColUser(value, res, tipo);
         resolve(res),
         this.sendEmail();
        }).catch((error) => {

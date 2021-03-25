@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
     ]),
     passwFormControl: new FormControl('', [
       Validators.required,
-      Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&-.#%])[A-Za-z\d$@$!%*?&].{8,}')
+      Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&-.#%])[A-Za-z0-9\d$@$!%*?&-.#%].{8,}'),
     ])
   });
 

@@ -5,6 +5,7 @@ import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { Usuarios } from '../services/types/usuarios';
 import { ComparadorService } from '../services/error/comparador.service';
 import { AuthService } from '../services/firebase/auth/auth.service';
+import * as Politicas from '../services/types/politicas.json';
 
 @Component({
   selector: 'app-users-reg',
@@ -56,7 +57,9 @@ export class UsersRegComponent implements OnInit {
   async registerUsers(val) {
     // comprobar campos usuario
     if(this.usersForm.status == "VALID") {
-      await this.authService.doRegister(val).then(() => {
+      // politicas aceptadas
+      val.politicasAceptadas = Politicas.politicas.ver;
+      await this.authService.doRegister(val, 'usuarios').then(() => {
           // no hay errores
           delete this.logUserError$;
           this.router.navigate(['userVerifyEmail']);

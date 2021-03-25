@@ -29,7 +29,8 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import{ FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SendEmailUsersComponent } from './send-email-users/send-email-users.component';
 import { LoginComponent } from './login/login.component';
-import { UsersRegComponent } from './users-reg/users-reg.component'; 
+import { UsersRegComponent } from './users-reg/users-reg.component';
+import { HosteRegComponent } from './hoste-reg/hoste-reg.component'; 
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +39,8 @@ import { UsersRegComponent } from './users-reg/users-reg.component';
     RegisterComponent,
     SendEmailUsersComponent,
     LoginComponent,
-    UsersRegComponent
+    UsersRegComponent,
+    HosteRegComponent
   ],
   imports: [
     BrowserModule,

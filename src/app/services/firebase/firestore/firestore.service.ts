@@ -8,12 +8,13 @@ export class FirestoreService {
 
   constructor(private db: AngularFirestore) { }
 
-  insertColUser(value, res) {
-    this.db.collection('usuarios').doc(res.user.uid).set({
+  insertColUser(value, res, tipo) {
+    this.db.collection(tipo).doc(res.user.uid).set({
       // uid: res.user.uid,
       name: value.name,
       lastName: value.lastName,
-      date: value.date
+      date: value.date,
+      politicasAcep: value.politicasAceptadas
    })
   }
 }
