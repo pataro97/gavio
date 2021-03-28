@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormGroup, FormControl } from '@angular/forms';
+import { Validators, FormGroup, FormControl, NgForm } from '@angular/forms';
 import { Router } from "@angular/router";
 // services
 import { Hosteleros } from '../services/types/hosteleros';
 import { ComparadorService } from '../services/error/comparador.service';
 import { AuthService } from '../services/firebase/auth/auth.service';
 import * as Politicas from '../services/types/politicas.json';
+import * as Provincias from '../services/select/provincias.json';
+import * as Municipios from '../services/select/municipios.json';
 
 @Component({
   selector: 'app-hoste-reg',
@@ -19,8 +21,28 @@ export class HosteRegComponent implements OnInit {
   public value: any = {} as Hosteleros;
   public boolTerm: boolean = false;
   public logUserError$: string;
+  public jsprovincias: any = {};
+  private jsmunicipios: any;
+  public nombreMun: Array<object> = [];
 
   ngOnInit(): void {
+    for(const key in Provincias) {
+      this.jsprovincias = Provincias[key];
+    }
+
+    for(const key in Municipios) {
+      this.jsmunicipios = Municipios[key];
+    }
+  }
+
+  selectFun(x) {
+    delete this.nombreMun;
+    this.nombreMun = [];
+    for(let i = 0; this.jsmunicipios.length > i; i++) {
+      if(this.jsmunicipios[i].id.slice(0, 2) == x) {
+        this.nombreMun.push(this.jsmunicipios[i])
+      }
+    }
   }
 
     // Validaciones fornularios
@@ -37,6 +59,9 @@ export class HosteRegComponent implements OnInit {
       lastNameFormControl: new FormControl('', [
         Validators.required,
         Validators.pattern('^(?=.{1,20}$)[a-zñáéíóúA-ZÁÉÍÓÚÑ]+(?: [a-zñáéíóúA-ZÁÉÍÓÚÑ]+)?$')
+      ]),
+      locSelect: new FormControl('', [
+        Validators.required,
       ]),
       passwFormControl: new FormControl('', [
         Validators.required,

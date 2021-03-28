@@ -140,5 +140,8 @@
       }
     }
   },
-  "defaultProject": "gavio"
+  "defaultProject": "gavio",
+  "cli": {
+    "analytics": false
+  }
 }

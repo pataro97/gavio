@@ -30,7 +30,28 @@
     </td>
   </tr>
   <tr>
-
+    <td>
+      <!-- select provincias -->
+      <mat-form-field class="inpuTdtHostelero-full-width" appearance="fill">
+        <mat-label>Provincia</mat-label>
+        <mat-select (selectionChange)="selectFun($event.value)">
+          <mat-option *ngFor='let provincias of jsprovincias' value="{{provincias.id}}">
+            {{provincias.nm}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </td>
+    <td>
+      <!-- select municipios -->
+      <mat-form-field class="inpuTdtHostelero-full-width" appearance="fill">
+        <mat-label>Localidad</mat-label>
+        <mat-select name="locSelect" formControlName="locSelect" [(ngModel)]="value.localidad">
+          <mat-option *ngFor='let municipios of nombreMun' value="{{municipios.id}}">
+            {{municipios.nm}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </td>
   </tr>
 </table>
 
