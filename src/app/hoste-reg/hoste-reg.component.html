@@ -2,7 +2,9 @@
 <form class="form" [formGroup]="hosteleroForm" (ngSubmit)="registerHostelero(value)">
 <table>
   <tr>
-
+    <td><h2>Datos Personales</h2></td>
+  </tr>
+  <tr>
     <td>    <!-- Nombre -->
       <mat-form-field class="inpuTdtHostelero-full-width">
         <mat-label>Nombre</mat-label>
@@ -31,10 +33,70 @@
   </tr>
   <tr>
     <td>
+      <mat-form-field class="inpuTdtHostelero-full-width">
+        <mat-label>Numero teléfono</mat-label>
+        <input [(ngModel)]="value.numTelefono" name="numTelefono" type="tel" maxlength="9" matInput formControlName="numTelefono" required>
+        <mat-error *ngIf="hosteleroForm.controls['numTelefono'].hasError('required')">
+          Numero de teléfono<strong>obligatorio</strong>
+        </mat-error>
+        <mat-error *ngIf="hosteleroForm.controls['numTelefono'].hasError('pattern')">
+          No <strong>admitido</strong>
+        </mat-error>
+      </mat-form-field>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <h2>Nombre y dirección del local</h2>
+    </td>
+  </tr>
+  <tr>
+    <td>    <!-- Nombre local -->
+      <mat-form-field class="inpuTdtHostelero-full-width">
+        <mat-label>Nombre del local</mat-label>
+        <input [(ngModel)]="value.nombreLocal" name="nombreLocal" type="text" matInput formControlName="nombreLocal" maxlength="35" required>
+        <mat-error *ngIf="hosteleroForm.controls['nombreLocal'].hasError('required')">
+          Nombre <strong>obligatorio</strong>
+        </mat-error>
+        <mat-error *ngIf="hosteleroForm.controls['nombreLocal'].hasError('pattern')">
+          No <strong>admitido</strong>
+        </mat-error>
+      </mat-form-field>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <mat-form-field class="inpuTdtHostelero-full-width">
+        <mat-label>Calle</mat-label>
+        <input [(ngModel)]="value.calle" name="calleFormControl" type="text" matInput formControlName="calleFormControl" maxlength="35" required>
+        <mat-error *ngIf="hosteleroForm.controls['calleFormControl'].hasError('required')">
+          Calle <strong>obligatorio</strong>
+        </mat-error>
+        <mat-error *ngIf="hosteleroForm.controls['calleFormControl'].hasError('pattern')">
+          No <strong>admitido</strong>
+        </mat-error>
+      </mat-form-field>
+    </td>
+    <td>
+      <mat-form-field class="inpuTdtHostelero-full-width">
+        <mat-label>Numero</mat-label>
+        <input [(ngModel)]="value.numCalle" name="numCalle" type="tel" maxlength="3" matInput formControlName="numCalle" required>
+        <mat-error *ngIf="hosteleroForm.controls['numCalle'].hasError('required')">
+          Numero <strong>obligatorio</strong>
+        </mat-error>
+        <mat-error *ngIf="hosteleroForm.controls['numCalle'].hasError('pattern')">
+          No <strong>admitido</strong>
+        </mat-error>
+      </mat-form-field>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
       <!-- select provincias -->
       <mat-form-field class="inpuTdtHostelero-full-width" appearance="fill">
         <mat-label>Provincia</mat-label>
-        <mat-select (selectionChange)="selectFun($event.value)">
+        <mat-select name="provSelect" formControlName="provSelect" (selectionChange)="selectFun($event.value)" required>
           <mat-option *ngFor='let provincias of jsprovincias' value="{{provincias.id}}">
             {{provincias.nm}}
           </mat-option>
@@ -45,7 +107,7 @@
       <!-- select municipios -->
       <mat-form-field class="inpuTdtHostelero-full-width" appearance="fill">
         <mat-label>Localidad</mat-label>
-        <mat-select name="locSelect" formControlName="locSelect" [(ngModel)]="value.localidad">
+        <mat-select name="locSelect" formControlName="locSelect" [(ngModel)]="value.localidad" required>
           <mat-option *ngFor='let municipios of nombreMun' value="{{municipios.id}}">
             {{municipios.nm}}
           </mat-option>
@@ -53,8 +115,9 @@
       </mat-form-field>
     </td>
   </tr>
+  
 </table>
-
+  <h2>Email y contraseña</h2>
     <!-- Gmail -->
     <mat-form-field class="inputHostelero-full-width">
       <mat-label>Email</mat-label>

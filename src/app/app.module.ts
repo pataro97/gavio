@@ -31,7 +31,8 @@ import{ FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SendEmailUsersComponent } from './send-email-users/send-email-users.component';
 import { LoginComponent } from './login/login.component';
 import { UsersRegComponent } from './users-reg/users-reg.component';
-import { HosteRegComponent } from './hoste-reg/hoste-reg.component'; 
+import { HosteRegComponent } from './hoste-reg/hoste-reg.component';
+import { RecoveryPasswordComponent } from './recovery-password/recovery-password.component'; 
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +42,8 @@ import { HosteRegComponent } from './hoste-reg/hoste-reg.component';
     SendEmailUsersComponent,
     LoginComponent,
     UsersRegComponent,
-    HosteRegComponent
+    HosteRegComponent,
+    RecoveryPasswordComponent
   ],
   imports: [
     BrowserModule,

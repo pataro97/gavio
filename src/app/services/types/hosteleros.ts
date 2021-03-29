@@ -8,7 +8,8 @@ export interface Hosteleros {
     passwR: string;
     nombreLocal: string;
     calle: string;
+    numCalle: number;
     localidad: string;
-    telefono: number;
+    numTelefono: number;
     politicasAceptadas: string;
 }

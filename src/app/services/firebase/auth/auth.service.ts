@@ -13,6 +13,15 @@ export class AuthService {
 
   constructor(public afAuth: AngularFireAuth, private firestoreService: FirestoreService, private router: Router) { }
 
+  // recuperar contraseña
+  async resetPass(email: string):Promise<void> {
+    try {
+      return this.afAuth.sendPasswordResetEmail(email);
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   // registro
   doRegister(value, tipo){
     // Fecha, tiempo, hora

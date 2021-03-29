@@ -49,5 +49,9 @@ export class LoginComponent implements OnInit {
     this.router.navigate(["register"]);
   }
 
+  goPassRec() {
+    this.router.navigate(["recovery-password"]);
+  }
+
 
 }

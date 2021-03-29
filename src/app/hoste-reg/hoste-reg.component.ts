@@ -46,7 +46,8 @@ export class HosteRegComponent implements OnInit {
   }
 
     // Validaciones fornularios
-
+    // [^ ] no permitir espacios ni antes y después
+    // ^(?=.{1,20}$)[a-zñáéíóúA-ZÁÉÍÓÚÑ]+(?: [a-zñáéíóúA-ZÁÉÍÓÚÑ]+)?$
     public hosteleroForm = new FormGroup({
       emailFormControl: new FormControl('', [
         Validators.required,
@@ -54,14 +55,33 @@ export class HosteRegComponent implements OnInit {
       ]),
       nameFormControl: new FormControl('', [
         Validators.required,
-        Validators.pattern('^(?=.{1,20}$)[a-zñáéíóúA-ZÁÉÍÓÚÑ]+(?: [a-zñáéíóúA-ZÁÉÍÓÚÑ]+)?$')
+        Validators.pattern('[^ ](?=.{1,20}$)[a-zñáéíóúA-ZÁÉÍÓÚÑ ]+(?: [a-zñáéíóúA-ZÁÉÍÓÚÑ ]+)?$')
       ]),
       lastNameFormControl: new FormControl('', [
         Validators.required,
-        Validators.pattern('^(?=.{1,20}$)[a-zñáéíóúA-ZÁÉÍÓÚÑ]+(?: [a-zñáéíóúA-ZÁÉÍÓÚÑ]+)?$')
+        Validators.pattern('[^ ](?=.{1,20}$)[a-zñáéíóúA-ZÁÉÍÓÚÑ ]+(?: [a-zñáéíóúA-ZÁÉÍÓÚÑ ]+)?$')
+      ]),
+      calleFormControl: new FormControl('', [
+        Validators.required,
+        Validators.pattern('[^ ](?=.{1,35}$)[a-zñáéíóúA-ZÁÉÍÓÚÑ ]+(?: [a-zñáéíóúA-ZÁÉÍÓÚÑ ]+)?$'),
+      ]),
+      provSelect: new FormControl('', [
+        Validators.required,
       ]),
       locSelect: new FormControl('', [
         Validators.required,
+      ]),
+      nombreLocal: new FormControl('', [
+        Validators.required,
+        Validators.pattern('[^ ][A-Za-z0-9\d$@$!%*?&-.#% ].{1,35}'),
+      ]),
+      numCalle: new FormControl('', [
+        Validators.required,
+        Validators.pattern('[0-9]{0,3}'),
+      ]),
+      numTelefono: new FormControl('', [
+        Validators.required,
+        Validators.pattern('[0-9]{4,9}'),
       ]),
       passwFormControl: new FormControl('', [
         Validators.required,
