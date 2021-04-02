@@ -125,5 +125,5 @@ export class HosteRegComponent implements OnInit {
     const confirmPassword = group.get('passwRFormControl').value;
 
     return password === confirmPassword ? null : { notSame: true }     
-}
+  }
 }

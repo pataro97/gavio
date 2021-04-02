@@ -15,11 +15,32 @@ export class AuthService {
 
   // recuperar contraseña
   async resetPass(email: string):Promise<void> {
-    try {
-      return this.afAuth.sendPasswordResetEmail(email);
-    } catch (error) {
-      console.error(error)
-    }
+    // try {
+    //   return this.afAuth.sendPasswordResetEmail(email);
+    // } catch (error) {
+    //   console.log(error)
+    // }
+    return new Promise<any>((resolve, rejects) => {
+      this.afAuth.sendPasswordResetEmail(email).then(
+        res => {
+          resolve(res)
+        }
+      ).catch((error) => {
+        // switch (error.code) {
+        //   case "auth/invalid-email": {
+        //     error = 'El Email proporcionado no es valido';
+        //     rejects(error)
+        //     break;
+        //   }
+        //   case "auth/email-already-in-use":
+        //     error = 'El Email ya se encuentra en uso';
+        //     rejects(error)
+        //     break;
+        //   }
+            rejects(error.code)
+        
+      })
+    })
   }
 
   // registro

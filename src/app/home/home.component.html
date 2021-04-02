@@ -1,1 +1,31 @@
-<p>Funciona</p>
+<div class="header-cont">
+    <div id="img-header">
+        <mat-card class="registerCard col-lg-8 col-md-8">
+            <mat-card-header>
+              <mat-card-title>Descubre los bares y restaurantes cerca tuya:</mat-card-title>
+            </mat-card-header>
+            <form class="form" [formGroup]="buscadorForm" (ngSubmit)="buscadorSbtForm()"></form>
+                <!-- select provincias -->
+                <mat-form-field appearance="fill">
+                    <mat-label>Provincia</mat-label>
+                    <mat-select name="provSelect" formControlName="provSelect" (selectionChange)="selectFun($event.value)" required>
+                        <mat-option *ngFor='let provincias of jsprovincias' value="{{provincias.id}}">
+                            {{provincias.nm}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <!-- select municipios -->
+                <mat-form-field appearance="fill">
+                    <mat-label>Localidad</mat-label>
+                    <mat-select name="locSelect" formControlName="locSelect" [(ngModel)]="localidad" required>
+                    <mat-option *ngFor='let municipios of nombreMun' value="{{municipios.id}}">
+                        {{municipios.nm}}
+                    </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <!-- submit button -->
+                <button mat-stroked-button mat-button id="hos-bt" class="submit-btn" type="submit">Buscar</button>
+
+          </mat-card>
+    </div>
+</div>

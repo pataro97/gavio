@@ -18,13 +18,19 @@ export class RecoveryPasswordComponent implements OnInit {
       Validators.required,
       Validators.email,
     ]),
+    captcha: new FormControl(),
   });
 
   ngOnInit(): void {
   }
 
   async tryPasswordRec(email) {
-    await this.authService.resetPass(email);
+    await this.authService.resetPass(email).then(() => {
+      // no hay errores
+      console.log('no hay errores')
+    }).catch ((error) => {
+      console.log(error)
+  })
   }
 
 }
