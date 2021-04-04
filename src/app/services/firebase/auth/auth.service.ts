@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { Router } from "@angular/router";
 import firebase from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
-// Firesore
+// Firestore
 import { FirestoreService } from '../firestore/firestore.service';
+
 
 
 @Injectable({
@@ -15,11 +16,7 @@ export class AuthService {
 
   // recuperar contraseña
   async resetPass(email: string):Promise<void> {
-    // try {
-    //   return this.afAuth.sendPasswordResetEmail(email);
-    // } catch (error) {
-    //   console.log(error)
-    // }
+
     return new Promise<any>((resolve, rejects) => {
       this.afAuth.sendPasswordResetEmail(email).then(
         res => {

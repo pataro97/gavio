@@ -41,7 +41,9 @@ export class HomeComponent implements OnInit {
   }
 
   buscadorSbtForm() {
-
+    if(this.buscadorForm.status == "VALID") {
+      alert(this.localidad)
+    }
   }
 
   selectFun(x) {

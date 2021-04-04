@@ -3,6 +3,7 @@ export const environment = {
   firebaseConfig: {
     apiKey: "AIzaSyCX-GD8KSQQjS9eBUjZHCGL3e5ORUERF4Y",
     authDomain: "gavio-py.firebaseapp.com",
+    databaseURL: "https://gavio-py-default-rtdb.europe-west1.firebasedatabase.app",
     projectId: "gavio-py",
     storageBucket: "gavio-py.appspot.com",
     messagingSenderId: "23779206809",
