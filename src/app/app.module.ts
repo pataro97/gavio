@@ -32,7 +32,8 @@ import { SendEmailUsersComponent } from './send-email-users/send-email-users.com
 import { LoginComponent } from './login/login.component';
 import { UsersRegComponent } from './users-reg/users-reg.component';
 import { HosteRegComponent } from './hoste-reg/hoste-reg.component';
-import { RecoveryPasswordComponent } from './recovery-password/recovery-password.component'; 
+import { RecoveryPasswordComponent } from './recovery-password/recovery-password.component';
+import { SearchComponent } from './search/search.component'; 
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +44,8 @@ import { RecoveryPasswordComponent } from './recovery-password/recovery-password
     LoginComponent,
     UsersRegComponent,
     HosteRegComponent,
-    RecoveryPasswordComponent
+    RecoveryPasswordComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
