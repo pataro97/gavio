@@ -79,6 +79,9 @@ export class HosteRegComponent implements OnInit {
         Validators.required,
         Validators.pattern('[0-9]{0,3}'),
       ]),
+      tipLoc: new FormControl('', [
+        Validators.required,
+      ]),
       numTelefono: new FormControl('', [
         Validators.required,
         Validators.pattern('[0-9]{4,9}'),
@@ -86,7 +89,6 @@ export class HosteRegComponent implements OnInit {
       passwFormControl: new FormControl('', [
         Validators.required,
         Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&-.#%])[A-Za-z0-9\d$@$!%*?&-.#%].{8,}'),
-  
       ]),
       checkBoxControl: new FormControl('', [
         Validators.required,
@@ -125,5 +127,9 @@ export class HosteRegComponent implements OnInit {
     const confirmPassword = group.get('passwRFormControl').value;
 
     return password === confirmPassword ? null : { notSame: true }     
+  }
+
+  selectFunTipoNe(tipo: string) {
+    this.value.tipoLocal = tipo;
   }
 }

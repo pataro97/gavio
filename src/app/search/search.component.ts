@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { from } from 'rxjs';
 import * as Municipios from '../services/select/municipios.json';
-
+// Services
+import { FirestoreService } from '../services/firebase/firestore/firestore.service'
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -10,7 +11,7 @@ import * as Municipios from '../services/select/municipios.json';
 })
 export class SearchComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private firestoreService: FirestoreService) { }
 
   private jsmunicipios: any;
   public nomLocalidad$: string;
@@ -20,6 +21,8 @@ export class SearchComponent implements OnInit {
     if(this.router.url.slice(8).length == 5 && this.obtenerNmProv(this.router.url.slice(8, 13)) != undefined) {
       // comparar id y obtener nombre
       this.nomLocalidad$ = this.obtenerNmProv(this.router.url.slice(8, 13));
+      // obtener locales provincia
+      this.getNamLoc(this.router.url.slice(8), 'restaurantes');
     }else {
       this.router.navigate(['error-page'])
     }
@@ -37,6 +40,10 @@ export class SearchComponent implements OnInit {
         return prov.nm;
       }
     }
+  }
+
+  getNamLoc(numProv: string, select: string) {
+    this.firestoreService.geLoceData('localidad', numProv, select)
   }
 
 

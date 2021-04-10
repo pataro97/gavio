@@ -63,6 +63,23 @@
         </mat-error>
       </mat-form-field>
     </td>
+    <td>
+     <!-- select tipo local -->
+      <mat-form-field class="inpuTdtHostelero-full-width" appearance="fill">
+        <mat-label>Tipo de negocio</mat-label>
+        <mat-select name="tipLoc" formControlName="tipLoc" (selectionChange)="selectFunTipoNe($event.value)"  required>
+          <mat-option value='restaurantes'>
+            Restaurante
+          </mat-option>
+          <mat-option value='bares'>
+            Bar
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="hosteleroForm.controls['tipLoc'].hasError('required')">
+          Seleccione su tipo de <strong>negocio</strong>
+        </mat-error>
+     </mat-form-field>
+    </td>
   </tr>
   <tr>
     <td>

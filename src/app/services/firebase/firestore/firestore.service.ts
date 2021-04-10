@@ -24,12 +24,13 @@ export class FirestoreService {
           nombreLocal: value.nombreLocal,
           ref: refHo
         })
-        this.db.collection('localidad').doc(value.localidad).collection(value.nombreLocal.replace(/ /g, '-') + '-' + 'ref:' + refHo).doc(value.nombreLocal).set({
+        this.db.collection('localidad').doc(value.localidad).collection(value.tipoLocal).doc(value.nombreLocal).set({
           date: value.date,
           localidad: value.localidad,
           calle: value.calle,
           numCalle: value.numCalle,
-          nombreLocal: value.nombreLocal
+          nombreLocal: value.nombreLocal,
+          ref: refHo
         })
         break;
       }
@@ -58,4 +59,14 @@ export class FirestoreService {
     return result;
   }
 
+
+  geLoceData(collection: string, numProv: string, tipLocSelect: string) {
+    const subCollections = this.db.collection(collection).doc(numProv).collection(tipLocSelect).get();
+    subCollections.forEach((result) => {
+      result.forEach((subCol) => {
+        console.log(subCol.id)
+        console.log(subCol.data())
+      })
+    })
+  }
 }

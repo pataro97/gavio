@@ -12,4 +12,5 @@ export interface Hosteleros {
     localidad: string;
     numTelefono: number;
     politicasAceptadas: string;
+    tipoLocal: string;
 }
