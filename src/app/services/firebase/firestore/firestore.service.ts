@@ -22,14 +22,13 @@ export class FirestoreService {
           calle: value.calle,
           numCalle: value.numCalle,
           nombreLocal: value.nombreLocal,
-          ref: refHo
+          ref: refHo,
+          tipoLocal: value.tipoLocal
         })
         this.db.collection('localidad').doc(value.localidad).collection(value.tipoLocal).doc(value.nombreLocal).set({
-          date: value.date,
           localidad: value.localidad,
           calle: value.calle,
           numCalle: value.numCalle,
-          nombreLocal: value.nombreLocal,
           ref: refHo
         })
         break;
@@ -60,13 +59,17 @@ export class FirestoreService {
   }
 
 
-  geLoceData(collection: string, numProv: string, tipLocSelect: string) {
+  geLoceData(collection: string, numProv: string, tipLocSelect: string): Array<object> {
+    let arrayDataColl: Array<object> = [];
     const subCollections = this.db.collection(collection).doc(numProv).collection(tipLocSelect).get();
     subCollections.forEach((result) => {
       result.forEach((subCol) => {
-        console.log(subCol.id)
-        console.log(subCol.data())
+        arrayDataColl.push({
+          id: subCol.id,
+          data: subCol.data()
+        })
       })
     })
+    return arrayDataColl;
   }
 }

@@ -1,1 +1,33 @@
-<p>Los mejores bares y restaurantes de {{nomLocalidad$}}</p>
+<table>
+    <tr>
+        <td>
+            <h2>Los mejores {{selected}} de {{nomLocalidad$}}:</h2>
+        </td>
+
+
+        <td id="selec-loc">
+            Buscar:
+            <!-- selector -->
+            <mat-form-field appearance="fill">
+                <mat-label>Tipo de negocio</mat-label>
+                <mat-select [(value)]="selected" (selectionChange)="selectTipoLoca($event.value)"  required>
+                  <mat-option value='restaurantes'>
+                    Restaurantes
+                  </mat-option>
+                  <mat-option value='bares'>
+                    Bar
+                  </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </td>
+    </tr>
+</table>
+
+
+<div id="cont-card-loc" *ngFor="let listlocales of dbLocales">
+    <mat-card>
+        <h2>{{listlocales.id}}</h2> <br>
+        <p>Calle:{{listlocales.data.calle}},N/{{listlocales.data.numCalle}}</p>
+    </mat-card>
+    
+</div>

@@ -14,18 +14,40 @@ export class SearchComponent implements OnInit {
   constructor(private router: Router, private firestoreService: FirestoreService) { }
 
   private jsmunicipios: any;
+  public dbLocales: any;
+  private numProv: string;
   public nomLocalidad$: string;
+  public selected = 'restaurantes';
 
   ngOnInit(): void {
     this.cargarJS();
-    if(this.router.url.slice(8).length == 5 && this.obtenerNmProv(this.router.url.slice(8, 13)) != undefined) {
-      // comparar id y obtener nombre
-      this.nomLocalidad$ = this.obtenerNmProv(this.router.url.slice(8, 13));
+    this.gestBusquedaLoc(true);
+  }
+
+  gestBusquedaLoc(x: boolean) {
+    // controlar si es la primera vez que se lanza
+    if(x == true) {
+      // primera vez que se lanza
+      if(this.router.url.slice(8).length == 5 && this.obtenerNmProv(this.router.url.slice(8, 13)) != undefined) {
+        // comparar id y obtener nombre
+        this.nomLocalidad$ = this.obtenerNmProv(this.router.url.slice(8, 13));
+        // almacenar numero provincia
+        this.numProv = this.router.url.slice(8)
+        // obtener locales provincia
+        this.dbLocales = this.getDataLoc(this.numProv, this.selected);
+      }else {
+        this.router.navigate(['error-page'])
+      }
+    } else {
       // obtener locales provincia
-      this.getNamLoc(this.router.url.slice(8), 'restaurantes');
-    }else {
-      this.router.navigate(['error-page'])
+      this.dbLocales = this.getDataLoc(this.numProv, this.selected);
     }
+    
+  }
+
+  selectTipoLoca(tipoLocalSeleccionado: string) {
+    this.selected = tipoLocalSeleccionado;
+    this.gestBusquedaLoc(false);
   }
 
   cargarJS(): void {
@@ -42,8 +64,8 @@ export class SearchComponent implements OnInit {
     }
   }
 
-  getNamLoc(numProv: string, select: string) {
-    this.firestoreService.geLoceData('localidad', numProv, select)
+  getDataLoc(numProv: string, select: string): Array<object> {
+    return this.firestoreService.geLoceData('localidad', numProv, select)
   }
 
 
