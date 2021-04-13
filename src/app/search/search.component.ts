@@ -3,7 +3,8 @@ import { Router } from '@angular/router';
 import { from } from 'rxjs';
 import * as Municipios from '../services/select/municipios.json';
 // Services
-import { FirestoreService } from '../services/firebase/firestore/firestore.service'
+import { FirestoreService } from '../services/firebase/firestore/firestore.service';
+
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -11,7 +12,10 @@ import { FirestoreService } from '../services/firebase/firestore/firestore.servi
 })
 export class SearchComponent implements OnInit {
 
-  constructor(private router: Router, private firestoreService: FirestoreService) { }
+  constructor(
+    private router: Router, 
+    private firestoreService: FirestoreService
+    ) { }
 
   private jsmunicipios: any;
   public dbLocales: any;
@@ -69,4 +73,5 @@ export class SearchComponent implements OnInit {
   }
 
 
+  
 }

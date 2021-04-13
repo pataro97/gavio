@@ -8,6 +8,8 @@ import { AuthService } from '../services/firebase/auth/auth.service';
 import * as Politicas from '../services/types/politicas.json';
 import * as Provincias from '../services/select/provincias.json';
 import * as Municipios from '../services/select/municipios.json';
+// jquery
+import $ from 'jquery';
 
 @Component({
   selector: 'app-hoste-reg',
@@ -18,13 +20,15 @@ export class HosteRegComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router) { }
   // Objetos campos
+  public geolocDat: Array<any> = []
   public value: any = {} as Hosteleros;
   public boolTerm: boolean = false;
   public logUserError$: string;
   public jsprovincias: any = {};
   private jsmunicipios: any;
-  public nombreMun: Array<object> = [];
-
+  public nombreTodosMun: Array<object> = [];
+  public nombreMun: string;
+  private numMunSelect: string;
   ngOnInit(): void {
     for(const key in Provincias) {
       this.jsprovincias = Provincias[key];
@@ -35,12 +39,14 @@ export class HosteRegComponent implements OnInit {
     }
   }
 
-  selectFun(x) {
-    delete this.nombreMun;
-    this.nombreMun = [];
+  selectFun(x): void {
+    this.nombreMun = x.nm;
+    this.numMunSelect = x.id;
+    delete this.nombreTodosMun;
+    this.nombreTodosMun = [];
     for(let i = 0; this.jsmunicipios.length > i; i++) {
-      if(this.jsmunicipios[i].id.slice(0, 2) == x) {
-        this.nombreMun.push(this.jsmunicipios[i])
+      if(this.jsmunicipios[i].id.slice(0, 2) == x.id) {
+        this.nombreTodosMun.push(this.jsmunicipios[i])
       }
     }
   }
@@ -122,14 +128,28 @@ export class HosteRegComponent implements OnInit {
 
   }
 
-  checkPasswords(group: FormGroup) {
+  checkPasswords(group: FormGroup): any {
     const password = group.get('passwFormControl').value;
     const confirmPassword = group.get('passwRFormControl').value;
 
     return password === confirmPassword ? null : { notSame: true }     
   }
 
-  selectFunTipoNe(tipo: string) {
+  selectFunTipoNe(tipo: string): void {
     this.value.tipoLocal = tipo;
   }
+  // obtener geolocalización
+  getGeoloc(): void {
+    if(this.value.calle && this.value.numCalle && this.value.localidad.id) {
+      this.geolocDat = []
+      // obtener ubicación
+      $.get(location.protocol + '//nominatim.openstreetmap.org/search?q='+this.value.numCalle+'+'+this.value.calle+',+'+this.value.localidad.nm+'&county='+this.nombreMun+'&format=json&polygon=1&addressdetails=1')
+      .then((result) => {
+        this.geolocDat = result;
+      });
+    } else {
+      alert('Rellene los campos calle, numero y localidad')
+    }
+  }
+
 }

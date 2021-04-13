@@ -17,7 +17,7 @@ export class FirestoreService {
           lastName: value.lastName,
           date: value.date,
           politicasAcep: value.politicasAceptadas,
-          localidad: value.localidad,
+          localidad: value.localidad.id,
           numTelefono: value.numTelefono,
           calle: value.calle,
           numCalle: value.numCalle,

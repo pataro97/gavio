@@ -114,7 +114,7 @@
       <mat-form-field class="inpuTdtHostelero-full-width" appearance="fill">
         <mat-label>Provincia</mat-label>
         <mat-select name="provSelect" formControlName="provSelect" (selectionChange)="selectFun($event.value)" required>
-          <mat-option *ngFor='let provincias of jsprovincias' value="{{provincias.id}}">
+          <mat-option *ngFor='let provincias of jsprovincias' [value]="provincias">
             {{provincias.nm}}
           </mat-option>
         </mat-select>
@@ -124,15 +124,19 @@
       <!-- select municipios -->
       <mat-form-field class="inpuTdtHostelero-full-width" appearance="fill">
         <mat-label>Localidad</mat-label>
-        <mat-select name="locSelect" formControlName="locSelect" [(ngModel)]="value.localidad" required>
-          <mat-option *ngFor='let municipios of nombreMun' value="{{municipios.id}}">
+        <mat-select name="locSelect" formControlName="locSelect" [(ngModel)]="value.localidad" (selectionChange)="getGeoloc()" required>
+          <mat-option *ngFor='let municipios of nombreTodosMun' [value]="municipios">
             {{municipios.nm}}
           </mat-option>
         </mat-select>
       </mat-form-field>
     </td>
   </tr>
-  
+  <div *ngIf='geolocDat'>
+    <mat-card *ngFor="let loc of geolocDat">
+        {{loc.display_name}}
+    </mat-card>
+  </div>
 </table>
   <h2>Email y contraseña</h2>
     <!-- Gmail -->

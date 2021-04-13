@@ -19,6 +19,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
+import { MatStepperModule } from '@angular/material/stepper';
 // Firebase
 import { AngularFireModule } from '@angular/fire';
 import { RegisterComponent } from './register/register.component';
@@ -64,6 +65,7 @@ import { SearchComponent } from './search/search.component';
     MatDividerModule,
     MatCheckboxModule,
     MatSelectModule,
+    MatStepperModule,
     // firebase
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
