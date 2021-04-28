@@ -124,16 +124,21 @@
       <!-- select municipios -->
       <mat-form-field class="inpuTdtHostelero-full-width" appearance="fill">
         <mat-label>Localidad</mat-label>
-        <mat-select name="locSelect" formControlName="locSelect" [(ngModel)]="value.localidad" (selectionChange)="getGeoloc()" required>
+        <mat-select id="locSelect" name="locSelect" formControlName="locSelect" [(ngModel)]="value.localidad" (selectionChange)="getGeoloc($event)" required>
           <mat-option *ngFor='let municipios of nombreTodosMun' [value]="municipios">
             {{municipios.nm}}
           </mat-option>
         </mat-select>
       </mat-form-field>
+      <mat-error *ngIf="errorMenLoc$">
+        Antes rellene los campos calle, numero y localidad
+      </mat-error>
     </td>
   </tr>
+  <!-- seleccion mapa --------------------------- -->
   <div *ngIf='geolocDat'>
-    <mat-card *ngFor="let loc of geolocDat">
+    <p>Por favor seleccione su localización:</p>
+    <mat-card (click)="selectCard(loc.display_name)" *ngFor="let loc of geolocDat">
         {{loc.display_name}}
     </mat-card>
   </div>

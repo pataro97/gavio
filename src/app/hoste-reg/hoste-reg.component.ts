@@ -10,6 +10,7 @@ import * as Provincias from '../services/select/provincias.json';
 import * as Municipios from '../services/select/municipios.json';
 // jquery
 import $ from 'jquery';
+import { MatSelect, MatSelectChange } from '@angular/material/select';
 
 @Component({
   selector: 'app-hoste-reg',
@@ -20,10 +21,11 @@ export class HosteRegComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router) { }
   // Objetos campos
-  public geolocDat: Array<any> = []
+  public geolocDat: Array<any>;
   public value: any = {} as Hosteleros;
   public boolTerm: boolean = false;
   public logUserError$: string;
+  public errorMenLoc$: boolean;
   public jsprovincias: any = {};
   private jsmunicipios: any;
   public nombreTodosMun: Array<object> = [];
@@ -139,8 +141,9 @@ export class HosteRegComponent implements OnInit {
     this.value.tipoLocal = tipo;
   }
   // obtener geolocalización
-  getGeoloc(): void {
+  getGeoloc(event: MatSelectChange): void {
     if(this.value.calle && this.value.numCalle && this.value.localidad.id) {
+      this.errorMenLoc$ = false;
       this.geolocDat = []
       // obtener ubicación
       $.get(location.protocol + '//nominatim.openstreetmap.org/search?q='+this.value.numCalle+'+'+this.value.calle+',+'+this.value.localidad.nm+'&county='+this.nombreMun+'&format=json&polygon=1&addressdetails=1')
@@ -148,8 +151,16 @@ export class HosteRegComponent implements OnInit {
         this.geolocDat = result;
       });
     } else {
-      alert('Rellene los campos calle, numero y localidad')
+      // Enviar mendaje de error
+      this.errorMenLoc$ = true;
+      // Desseleccionar localidad
+      const matSelect: MatSelect = event.source;
+      matSelect.writeValue(null);
     }
+  }
+
+  selectCard(selectLoc): void {
+    alert(selectLoc)
   }
 
 }
